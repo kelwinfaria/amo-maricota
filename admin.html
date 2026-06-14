@@ -593,6 +593,12 @@ button,input,select,textarea{font-family:inherit;font-size:inherit}
             <button class="ssave" onclick="saveName()">Salvar</button>
           </div>
           <div class="sc">
+            <h3>Mensagem do WhatsApp</h3>
+            <p class="desc">Texto enviado quando o cliente clica em "Quero esta peça". Use <code style="background:var(--bg2);padding:1px 6px;border-radius:5px;font-size:.78rem">{produto}</code> e <code style="background:var(--bg2);padding:1px 6px;border-radius:5px;font-size:.78rem">{categoria}</code> para inserir o nome automaticamente.</p>
+            <div class="field"><label>Modelo da mensagem</label><textarea id="s-wamsg" rows="3" style="width:100%;padding:11px 13px;border:1.5px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);font-size:.88rem;outline:none;resize:none;font-family:inherit;transition:border-color .22s" placeholder="Olá Maricota, tenho interesse no {produto} da seção de {categoria}!"></textarea></div>
+            <button class="ssave" onclick="saveWAMsg()">Salvar mensagem</button>
+          </div>
+          <div class="sc">
             <h3>Alterar senha</h3>
             <p class="desc">Mantenha o painel protegido.</p>
             <div class="field"><label>Senha atual</label><input type="password" id="s-old" placeholder="Senha atual"></div>
@@ -1143,8 +1149,13 @@ function loadSettings(){
   cfg=LS.get('mc_cfg')||DSET;
   document.getElementById('s-wa').value=cfg.waNumber||'';
   document.getElementById('s-name').value=cfg.adminName||'';
+  document.getElementById('s-wamsg').value=cfg.waMsg||'Olá Maricota, tenho interesse no {produto} da seção de {categoria}!';
   document.getElementById('sbName').textContent=cfg.adminName||'Admin';
   document.getElementById('sbAv').textContent=(cfg.adminName||'A')[0].toUpperCase();
+}
+function saveWAMsg(){
+  cfg.waMsg=document.getElementById('s-wamsg').value.trim()||'Olá Maricota, tenho interesse no {produto} da seção de {categoria}!';
+  LS.set('mc_cfg',cfg);showToast('Mensagem atualizada!','ok');
 }
 function saveWA(){cfg.waNumber=document.getElementById('s-wa').value.trim();LS.set('mc_cfg',cfg);showToast('WhatsApp atualizado!','ok')}
 function saveName(){cfg.adminName=document.getElementById('s-name').value.trim()||'Aladiane';LS.set('mc_cfg',cfg);document.getElementById('sbName').textContent=cfg.adminName;document.getElementById('sbAv').textContent=cfg.adminName[0].toUpperCase();showToast('Nome atualizado!','ok')}

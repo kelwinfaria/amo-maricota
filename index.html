@@ -760,8 +760,10 @@ function openLB(card){
   if(fabric){lbFabric.textContent=fabric;lbMaterial.style.display='flex';}else{lbMaterial.style.display='none';}
   const productName=card.querySelector('.card-name').textContent;
   const catLabel=card.dataset.catLabel||'produtos';
-  const waNum=(JSON.parse(localStorage.getItem('mc_cfg')||'{}').waNumber)||'5599999999999';
-  const waMsg=encodeURIComponent(`Olá Maricota, tenho interesse no ${productName} da seção de ${catLabel}s!`);
+  const mcCfg=JSON.parse(localStorage.getItem('mc_cfg')||'{}');
+  const waNum=mcCfg.waNumber||'5599999999999';
+  const tpl=mcCfg.waMsg||'Olá Maricota, tenho interesse no {produto} da seção de {categoria}!';
+  const waMsg=encodeURIComponent(tpl.replace('{produto}',productName).replace('{categoria}',catLabel));
   lbWa.href=`https://wa.me/${waNum}?text=${waMsg}`;
   const multi=gallery.length>1;
   lbPrev.hidden=lbNext.hidden=!multi;
