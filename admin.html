@@ -54,15 +54,17 @@ button,input,select,textarea{font-family:inherit;font-size:inherit}
 
 /* SIDEBAR */
 .sb{width:var(--sb);flex:none;background:var(--ink);min-height:100vh;display:flex;flex-direction:column;position:sticky;top:0;height:100vh;overflow-y:auto}
-.sb-head{padding:24px 20px 18px;border-bottom:1px solid rgba(255,255,255,.08)}
-.sb-logo{height:26px;filter:brightness(0) invert(1);opacity:.86}
-.sb-role{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.36);margin-top:5px}
+.sb-head{padding:22px 20px 16px;border-bottom:1px solid rgba(255,255,255,.08)}
+.sb-wordmark{font-family:'Cormorant Garamond',serif;font-size:1.32rem;font-weight:600;font-style:italic;color:rgba(255,255,255,.92);letter-spacing:.02em;line-height:1}
+.sb-role{font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.32);margin-top:5px}
 .sb-nav{flex:1;padding:14px 10px}
 .sb-grp{font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.28);padding:0 10px;margin:16px 0 5px}
 .sbl{display:flex;align-items:center;gap:11px;padding:10px 11px;border-radius:9px;color:rgba(255,255,255,.58);font-size:.84rem;font-weight:500;cursor:pointer;transition:all .22s;margin-bottom:1px;border:none;background:none;width:100%;text-align:left;text-decoration:none}
 .sbl:hover{background:rgba(255,255,255,.07);color:rgba(255,255,255,.88)}
 .sbl.on{background:var(--brand);color:#fff}
-.sbl .ico{width:34px;height:34px;border-radius:8px;display:grid;place-items:center;font-size:.95rem;flex:none;background:rgba(255,255,255,.07)}
+.sbl .ico{width:34px;height:34px;border-radius:8px;display:grid;place-items:center;flex:none;background:rgba(255,255,255,.07);color:rgba(255,255,255,.6)}
+.sbl .ico svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.sbl.on .ico{background:rgba(255,255,255,.18);color:#fff}
 .sbl.on .ico{background:rgba(255,255,255,.18)}
 .sbl .lbl{flex:1}
 .sbl .bdg{font-size:.64rem;background:rgba(255,255,255,.14);padding:2px 8px;border-radius:100px;font-weight:600}
@@ -326,7 +328,7 @@ button,input,select,textarea{font-family:inherit;font-size:inherit}
 <!-- LOGIN -->
 <div id="login">
   <div class="lcard">
-    <img src="images/img00.jpg" alt="Maricota">
+    <div style="font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:600;font-style:italic;color:var(--olive);margin-bottom:20px;line-height:1">Maricota</div>
     <h1>Painel de Administração</h1>
     <p class="sub">Bem-vinda, Aladiane</p>
     <div class="field">
@@ -343,20 +345,20 @@ button,input,select,textarea{font-family:inherit;font-size:inherit}
 <div id="app">
   <nav class="sb" id="sb">
     <div class="sb-head">
-      <img class="sb-logo" src="images/img00.jpg" alt="Maricota">
+      <div class="sb-wordmark">Maricota</div>
       <div class="sb-role">Painel Administrativo</div>
     </div>
     <div class="sb-nav">
       <div class="sb-grp">Principal</div>
-      <button class="sbl on" data-page="dash"><span class="ico">📊</span><span class="lbl">Dashboard</span></button>
-      <button class="sbl" data-page="produtos"><span class="ico">🧸</span><span class="lbl">Produtos</span><span class="bdg" id="prodBdg">0</span></button>
-      <button class="sbl" data-page="colecoes"><span class="ico">✦</span><span class="lbl">Coleções</span></button>
+      <button class="sbl on" data-page="dash"><span class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></span><span class="lbl">Dashboard</span></button>
+      <button class="sbl" data-page="produtos"><span class="ico"><svg viewBox="0 0 24 24"><path d="M20 7 12 3 4 7v10l8 4 8-4V7Z"/><path d="m4 7 8 4 8-4"/><path d="M12 11v10"/></svg></span><span class="lbl">Produtos</span><span class="bdg" id="prodBdg">0</span></button>
+      <button class="sbl" data-page="colecoes"><span class="ico"><svg viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h12"/><circle cx="19" cy="18" r="2"/></svg></span><span class="lbl">Coleções</span></button>
       <div class="sb-grp">Personalizar</div>
-      <button class="sbl" data-page="conteudo"><span class="ico">✏️</span><span class="lbl">Conteúdo da Página</span></button>
-      <button class="sbl" data-page="aparencia"><span class="ico">🎨</span><span class="lbl">Aparência</span></button>
+      <button class="sbl" data-page="conteudo"><span class="ico"><svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5Z"/></svg></span><span class="lbl">Conteúdo da Página</span></button>
+      <button class="sbl" data-page="aparencia"><span class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3a4.5 4.5 0 0 1 0 9H8.5a4.5 4.5 0 0 0 0 9"/></svg></span><span class="lbl">Aparência</span></button>
       <div class="sb-grp">Sistema</div>
-      <button class="sbl" data-page="settings"><span class="ico">⚙️</span><span class="lbl">Configurações</span></button>
-      <a class="sbl" href="index.html" target="_blank"><span class="ico">🔗</span><span class="lbl">Ver portfólio</span></a>
+      <button class="sbl" data-page="settings"><span class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1Z"/></svg></span><span class="lbl">Configurações</span></button>
+      <a class="sbl" href="index.html" target="_blank"><span class="ico"><svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span><span class="lbl">Ver portfólio</span></a>
     </div>
     <div class="sb-foot">
       <div class="sb-user">
