@@ -813,10 +813,11 @@ addEventListener('keydown',e=>{if(!lb.classList.contains('open'))return;if(e.key
   /* aplica número de WhatsApp em todos os links */
   const waNum=(JSON.parse(localStorage.getItem('mc_cfg')||'{}').waNumber)||'5599999999999';
   const waBase=`https://wa.me/${waNum}`;
+  const waDefault=encodeURIComponent('Olá Maricota, vim pelo portfólio e gostaria de encomendar uma peça!');
   document.querySelectorAll('a[href*="wa.me"]').forEach(a=>{
     const url=new URL(a.href);
     const txt=url.searchParams.get('text');
-    a.href=txt?`${waBase}?text=${encodeURIComponent(txt)}`:waBase;
+    a.href=txt?`${waBase}?text=${encodeURIComponent(txt)}`:`${waBase}?text=${waDefault}`;
   });
 })();
 </script>
