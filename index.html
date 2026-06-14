@@ -254,12 +254,11 @@ footer{background:var(--olive);color:#fff;padding:56px 0 calc(30px + env(safe-ar
 .lb-stage img{width:100%;height:100%;object-fit:cover;object-position:center top;transition:opacity .3s}
 
 /* indicador de fotos na imagem */
-.lb-img-hint{position:absolute;bottom:12px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:6px;background:rgba(34,31,22,.52);backdrop-filter:blur(6px);padding:6px 12px;border-radius:100px;pointer-events:none;opacity:0;transition:opacity .4s}
-.lb-img-hint.show{opacity:1}
-.lb-img-hint span{font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:#fff;font-family:'Inter',sans-serif;font-weight:500}
-.lb-img-dots{display:flex;gap:4px;align-items:center}
-.lb-img-dots i{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.45);transition:background .3s,transform .3s}
-.lb-img-dots i.on{background:#fff;transform:scale(1.25)}
+.lb-img-hint{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);display:none;align-items:center;gap:5px;pointer-events:none}
+.lb-img-hint.show{display:flex}
+.lb-img-dots{display:flex;gap:5px;align-items:center}
+.lb-img-dots i{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.5);box-shadow:0 0 0 1px rgba(0,0,0,.18);transition:background .3s,transform .3s}
+.lb-img-dots i.on{background:#fff;transform:scale(1.2);box-shadow:0 0 0 1px rgba(0,0,0,.12)}
 
 /* painel de info */
 .lb-body{display:flex;flex-direction:column;overflow:hidden;flex:1;min-height:0}
@@ -483,7 +482,7 @@ footer{background:var(--olive);color:#fff;padding:56px 0 calc(30px + env(safe-ar
 
       <article class="card feat" data-category="bichinhos" data-det="Vestido, laço e jardineira" data-price="R$ 179,00" data-cat-label="Bichinho" data-fabric="Pelúcia, algodão e feltro" data-images="images/img02.jpg|images/img03.jpg|images/img04.jpg">
         <div class="card-med"><span class="ctag2 hot">★ Destaque</span><span class="czoom">⤢</span><img src="images/img02.jpg" alt="Girafinha Alfredo"><span class="card-multi"><i></i><i></i><i></i></span></div>
-        <div class="card-bod"><h3 class="card-name">Girafinha <em>Alfredo</em></h3><p class="card-det">Vestido, laço e jardineira</p><div class="card-ft"><span class="card-price">R$ 179,00</span><span class="card-more">3 fotos →</span></div></div>
+        <div class="card-bod"><h3 class="card-name">Girafinha <em>Alfredo</em></h3><p class="card-det">Vestido, laço e jardineira</p><div class="card-ft"><span class="card-price">R$ 179,00</span><span class="card-more">ampliar →</span></div></div>
       </article>
 
       <article class="card" data-category="bichinhos" data-det="Jardineira, camisa e botões" data-price="R$ 179,00" data-cat-label="Bichinho" data-fabric="Pelúcia, algodão e feltro" data-images="images/img05.jpg">
@@ -503,12 +502,12 @@ footer{background:var(--olive);color:#fff;padding:56px 0 calc(30px + env(safe-ar
 
       <article class="card feat" data-category="bichinhos" data-det="Jardineira listrada, juba de fio e gravata borboleta" data-price="R$ 179,00" data-cat-label="Bichinho" data-fabric="Pelúcia, algodão e fio de lã" data-images="images/img09.jpg|images/img08.jpg">
         <div class="card-med"><span class="ctag2 hot">★ O rei do quartinho</span><span class="czoom">⤢</span><img src="images/img09.jpg" alt="Leão Caetano"><span class="card-multi"><i></i><i></i></span></div>
-        <div class="card-bod"><h3 class="card-name">Leão <em>Caetano</em></h3><p class="card-det">Jardineira listrada, juba de fio e gravata borboleta</p><div class="card-ft"><span class="card-price">R$ 179,00</span><span class="card-more">2 fotos →</span></div></div>
+        <div class="card-bod"><h3 class="card-name">Leão <em>Caetano</em></h3><p class="card-det">Jardineira listrada, juba de fio e gravata borboleta</p><div class="card-ft"><span class="card-price">R$ 179,00</span><span class="card-more">ampliar →</span></div></div>
       </article>
 
       <article class="card" data-category="bichinhos" data-det="Jardineira, pelinho e xadrez azul" data-price="R$ 179,00" data-cat-label="Bichinho" data-fabric="Pelúcia, algodão e plush" data-images="images/img07.jpg|images/img10.jpg">
         <div class="card-med"><span class="ctag2">Bichinho</span><span class="czoom">⤢</span><img src="images/img07.jpg" alt="Ovelha Luna"><span class="card-multi"><i></i><i></i></span></div>
-        <div class="card-bod"><h3 class="card-name">Ovelha <em>Luna</em></h3><p class="card-det">Jardineira, pelinho e xadrez azul</p><div class="card-ft"><span class="card-price">R$ 179,00</span><span class="card-more">2 fotos →</span></div></div>
+        <div class="card-bod"><h3 class="card-name">Ovelha <em>Luna</em></h3><p class="card-det">Jardineira, pelinho e xadrez azul</p><div class="card-ft"><span class="card-price">R$ 179,00</span><span class="card-more">ampliar →</span></div></div>
       </article>
 
       <article class="card" data-category="roupinhas" data-det="Babados e troca de cor" data-price="Cor à escolha" data-cat-label="Roupinha" data-fabric="100% algodão" data-images="images/img12.jpg">
@@ -662,7 +661,6 @@ footer{background:var(--olive);color:#fff;padding:56px 0 calc(30px + env(safe-ar
       <img id="lbImg" alt="">
       <div class="lb-img-hint" id="lbHint">
         <div class="lb-img-dots" id="lbImgDots"></div>
-        <span>deslize</span>
       </div>
     </div>
     <div class="lb-body">
@@ -745,7 +743,7 @@ const lb=document.getElementById('lb'),lbImg=document.getElementById('lbImg'),
   lbFabric=document.getElementById('lbFabric'),lbWa=document.getElementById('lbWa'),
   lbDots=document.getElementById('lbDots'),lbPrev=document.getElementById('lbPrev'),lbNext=document.getElementById('lbNext'),
   lbHint=document.getElementById('lbHint'),lbImgDots=document.getElementById('lbImgDots');
-let gallery=[],gi=0,hintTimer=null;
+let gallery=[],gi=0;
 function resolveRes(p){return(window.__resources&&window.__resources[p])||p}
 function paint(){
   lbImg.style.opacity=0;
@@ -753,11 +751,6 @@ function paint(){
   lbImg.src=resolveRes(gallery[gi]);
   if(lbImg.complete&&lbImg.naturalWidth)lbImg.style.opacity=1;
   [...lbImgDots.children].forEach((d,i)=>d.classList.toggle('on',i===gi));
-}
-function showHint(){
-  lbHint.classList.add('show');
-  clearTimeout(hintTimer);
-  hintTimer=setTimeout(()=>lbHint.classList.remove('show'),2400);
 }
 function openLB(card){
   gallery=card.dataset.images.split('|');gi=0;
@@ -776,18 +769,18 @@ function openLB(card){
   const multi=gallery.length>1;
   lbPrev.hidden=lbNext.hidden=!multi;
   lbImgDots.innerHTML='';
-  if(multi){gallery.forEach((_,i)=>{const d=document.createElement('i');d.classList.toggle('on',i===0);lbImgDots.appendChild(d)});lbHint.classList.remove('show');setTimeout(showHint,400);}
+  if(multi){gallery.forEach((_,i)=>{const d=document.createElement('i');d.classList.toggle('on',i===0);lbImgDots.appendChild(d)});lbHint.classList.add('show');}
   else{lbHint.classList.remove('show')}
   paint();lb.classList.add('open');document.body.style.overflow='hidden';
 }
 /* touch swipe na imagem */
 let lbTx=0;
 document.getElementById('lbImg').addEventListener('touchstart',e=>lbTx=e.touches[0].clientX,{passive:true});
-document.getElementById('lbImg').addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-lbTx;if(Math.abs(dx)>38&&gallery.length>1){gi=(gi+(dx>0?-1:1)+gallery.length)%gallery.length;paint();showHint()}},{passive:true});
-function closeLB(){lb.classList.remove('open');document.body.style.overflow='';clearTimeout(hintTimer)}
+document.getElementById('lbImg').addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-lbTx;if(Math.abs(dx)>38&&gallery.length>1){gi=(gi+(dx>0?-1:1)+gallery.length)%gallery.length;paint()}},{passive:true});
+function closeLB(){lb.classList.remove('open');document.body.style.overflow=''}
 cards.forEach(c=>c.addEventListener('click',()=>openLB(c)));
-lbPrev.onclick=()=>{gi=(gi-1+gallery.length)%gallery.length;paint();showHint()};
-lbNext.onclick=()=>{gi=(gi+1)%gallery.length;paint();showHint()};
+lbPrev.onclick=()=>{gi=(gi-1+gallery.length)%gallery.length;paint()};
+lbNext.onclick=()=>{gi=(gi+1)%gallery.length;paint()};
 document.getElementById('lbClose').onclick=closeLB;
 lb.addEventListener('click',e=>{if(e.target===lb)closeLB()});
 addEventListener('keydown',e=>{if(!lb.classList.contains('open'))return;if(e.key==='Escape')closeLB();if(e.key==='ArrowLeft'&&!lbPrev.hidden)lbPrev.click();if(e.key==='ArrowRight'&&!lbNext.hidden)lbNext.click()});
