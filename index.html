@@ -198,7 +198,7 @@ nav.sc{border-bottom-color:var(--line);background:rgba(252,251,248,.95)}
 .cnote b{font-style:normal;font-family:'DM Sans',sans-serif;font-size:.92em;font-weight:600;color:var(--olive)}
 
 /* QUOTE */
-.quote{padding:clamp(70px,9vw,100px) 0;background:var(--sagep);overflow:hidden}
+.quote{padding:clamp(70px,9vw,100px) 0;background:#DCE9CE;overflow:hidden}
 .quote-g{display:grid;grid-template-columns:1fr 1fr;gap:clamp(36px,6vw,80px);align-items:center}
 .quote-cp .qm{font-family:'Cormorant Garamond',serif;font-size:3.8rem;color:var(--sage);line-height:.4;height:26px;margin-bottom:18px}
 .quote-cp blockquote{font-family:'Inter',sans-serif;font-size:clamp(1rem,2vw,1.3rem);line-height:1.7;color:var(--ink);font-weight:400}
@@ -232,7 +232,7 @@ nav.sc{border-bottom-color:var(--line);background:rgba(252,251,248,.95)}
 footer{background:var(--olive);color:#fff;padding:56px 0 calc(30px + env(safe-area-inset-bottom));overflow:hidden;text-align:center}
 .ft-illo{width:76px;height:52px;margin:0 auto 16px;opacity:.25;color:#fff;display:flex;align-items:center;justify-content:center}
 .ft-illo svg{width:100%;stroke-linecap:round;stroke-linejoin:round}
-.ft-logo{height:34px;margin:0 auto 13px;opacity:.9}
+.ft-logo{height:56px;margin:0 auto 14px;opacity:.95}
 .ft-tag{font-family:'Inter',sans-serif;font-size:.84rem;color:rgba(255,255,255,.7);margin-bottom:20px;font-weight:400}
 .ft-heart{color:rgba(255,255,255,.9)}
 .ft-links{display:flex;justify-content:center;gap:10px;margin-bottom:24px;flex-wrap:wrap}
@@ -252,23 +252,46 @@ footer{background:var(--olive);color:#fff;padding:56px 0 calc(30px + env(safe-ar
 .lb-in{position:relative;max-width:380px;width:100%;display:flex;flex-direction:column;background:var(--bg);border-radius:22px;overflow:hidden;box-shadow:0 38px 86px -30px rgba(0,0,0,.56);max-height:92vh}
 .lb-stage{position:relative;background:var(--paper);flex-shrink:0;aspect-ratio:4/5;overflow:hidden}
 .lb-stage img{width:100%;height:100%;object-fit:cover;object-position:center top;transition:opacity .3s}
-.lb-side{padding:16px 16px 20px;display:flex;flex-direction:column;overflow-y:auto}
-.lb-cat{font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--olive);font-weight:600;background:var(--sagep);display:inline-flex;align-self:flex-start;padding:4px 10px;border-radius:100px;margin-bottom:10px}
-.lb-name{font-size:1.3rem;margin-bottom:3px;line-height:1.1}
-.lb-det{font-family:'Inter',sans-serif;font-size:.8rem;color:var(--inkm);line-height:1.5}
-.lb-price{font-size:1.1rem;font-weight:700;color:var(--olive);letter-spacing:-.01em;margin-top:10px}
-.lb-material{display:flex;align-items:center;gap:8px;margin-top:8px;padding:8px 12px;background:var(--bg2);border-radius:10px}
-.lb-material-label{font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;color:var(--inks);font-weight:600;flex-shrink:0}
-.lb-material-val{font-family:'Inter',sans-serif;font-size:.78rem;color:var(--inkm)}
-.lb-dots{display:flex;gap:5px;margin-top:10px;align-items:center}
-.lb-dots i{width:22px;height:3px;border-radius:2px;background:var(--line);cursor:pointer;transition:background .3s,width .35s}
-.lb-dots i.on{background:var(--olive);width:30px}
-.lb-counter{font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:var(--inks);margin-top:4px}
-.lb-wa{background:var(--olive);color:#fff;text-decoration:none;font-size:.82rem;font-weight:600;padding:13px 18px;border-radius:100px;display:inline-flex;gap:7px;align-items:center;justify-content:center;transition:background .3s;margin-top:14px}
-.lb-wa:hover{background:var(--olived)}
+
+/* indicador de fotos na imagem */
+.lb-img-hint{position:absolute;bottom:12px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:6px;background:rgba(34,31,22,.52);backdrop-filter:blur(6px);padding:6px 12px;border-radius:100px;pointer-events:none;opacity:0;transition:opacity .4s}
+.lb-img-hint.show{opacity:1}
+.lb-img-hint span{font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:#fff;font-family:'Inter',sans-serif;font-weight:500}
+.lb-img-dots{display:flex;gap:4px;align-items:center}
+.lb-img-dots i{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.45);transition:background .3s,transform .3s}
+.lb-img-dots i.on{background:#fff;transform:scale(1.25)}
+
+/* painel de info */
+.lb-body{display:flex;flex-direction:column;overflow:hidden;flex:1;min-height:0}
+.lb-scroll{flex:1;overflow-y:auto;padding:16px 16px 0;display:flex;flex-direction:column;gap:0}
+.lb-foot{padding:12px 16px 16px;border-top:1px solid var(--lines);background:var(--bg);flex-shrink:0}
+
+.lb-cat{font-size:.56rem;letter-spacing:.18em;text-transform:uppercase;color:var(--olive);font-weight:700;background:var(--sagep);display:inline-flex;align-self:flex-start;padding:4px 10px;border-radius:100px;margin-bottom:8px}
+.lb-name{font-size:1.3rem;line-height:1.1;margin-bottom:2px}
+.lb-det{font-family:'Inter',sans-serif;font-size:.82rem;color:var(--inkm);line-height:1.6;margin-top:4px}
+
+/* seções estilo Airbnb */
+.lb-divider{height:1px;background:var(--lines);margin:12px 0}
+.lb-info-row{display:flex;align-items:flex-start;gap:12px;padding:4px 0}
+.lb-info-row .lir-icon{width:32px;height:32px;border-radius:50%;background:var(--bg2);display:grid;place-items:center;font-size:.9rem;flex-shrink:0}
+.lb-info-row .lir-body{}
+.lb-info-row .lir-label{font-family:'Inter',sans-serif;font-size:.7rem;font-weight:600;color:var(--inkm);line-height:1.2}
+.lb-info-row .lir-val{font-family:'Inter',sans-serif;font-size:.75rem;color:var(--inks);line-height:1.4;margin-top:1px}
+
+/* preço + botão no rodapé */
+.lb-price-row{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.lb-price{font-size:1.15rem;font-weight:700;color:var(--olive);letter-spacing:-.01em}
+.lb-price small{font-size:.68rem;font-weight:400;color:var(--inks);display:block;letter-spacing:0}
+.lb-wa{background:#fff;color:var(--olive);border:1.5px solid var(--olive);text-decoration:none;font-size:.82rem;font-weight:600;padding:12px 20px;border-radius:100px;display:inline-flex;gap:7px;align-items:center;justify-content:center;transition:background .3s,color .3s;white-space:nowrap;flex-shrink:0}
+.lb-wa:hover{background:var(--olive);color:#fff}
+
+.lb-counter{display:none}
+.lb-dots{display:none}
+.lb-material{display:none}
+
 .lb-cl{position:absolute;top:10px;right:10px;z-index:5;width:36px;height:36px;border-radius:50%;border:none;background:rgba(252,251,248,.95);color:var(--ink);font-size:.9rem;cursor:pointer;display:grid;place-items:center;transition:transform .3s;box-shadow:var(--shx)}
 .lb-cl:hover{transform:rotate(90deg)}
-.lb-nav{position:absolute;width:38px;height:38px;border-radius:50%;border:none;background:rgba(252,251,248,.92);color:var(--ink);cursor:pointer;display:grid;place-items:center;z-index:4;font-size:1.2rem;transition:background .3s;box-shadow:var(--shx);top:calc(4/9 * 100%);transform:translateY(-50%)}
+.lb-nav{position:absolute;width:38px;height:38px;border-radius:50%;border:none;background:rgba(252,251,248,.92);color:var(--ink);cursor:pointer;display:grid;place-items:center;z-index:4;font-size:1.2rem;transition:background .3s,opacity .3s;box-shadow:var(--shx);top:35%;transform:translateY(-50%)}
 .lb-nav:hover{background:#fff}
 .lb-nav.prev{left:10px}
 .lb-nav.next{right:10px}
@@ -296,7 +319,8 @@ footer{background:var(--olive);color:#fff;padding:56px 0 calc(30px + env(safe-ar
   .quote-g{grid-template-columns:1fr}
   .quote-illo{display:none}
   .lb-in{max-width:92vw}
-  .lb-side{padding:14px 14px 18px}
+  .lb-scroll{padding:12px 14px 0}
+  .lb-foot{padding:10px 14px 14px}
   .pcards{grid-template-columns:1fr;gap:11px}
 }
 @media(max-width:560px){
@@ -320,7 +344,7 @@ footer{background:var(--olive);color:#fff;padding:56px 0 calc(30px + env(safe-ar
 <body>
 
 <nav id="nav">
-  <a href="#top"><img class="nav-logo" src="images/img00.jpg" alt="Maricota"></a>
+  <a href="#top"><img class="nav-logo" id="pg-nav-logo" src="images/img00.jpg" alt="Maricota"></a>
   <div class="nav-links">
     <a href="#sobre">Sobre</a>
     <a href="#colecoes">Coleções</a>
@@ -347,15 +371,15 @@ footer{background:var(--olive);color:#fff;padding:56px 0 calc(30px + env(safe-ar
 <header class="hero">
   <div class="wrap hero-g">
     <div class="rv">
-      <img class="hero-logo" src="images/img00.jpg" alt="Maricota">
-      <h1 class="htag">Maternidade dos sonhos,<span class="it">feita à mão.</span></h1>
-      <p class="hlead">Bichinhos, roupinhas e lembranças costuradas uma a uma. Peças únicas para acolher, presentear e eternizar os primeiros dias.</p>
+      <img class="hero-logo" id="pg-hero-logo" src="images/img00.jpg" alt="Maricota">
+      <h1 class="htag" id="pg-hero-title">Maternidade dos sonhos,<span class="it">feita à mão.</span></h1>
+      <p class="hlead" id="pg-hero-sub">Bichinhos, roupinhas e lembranças costuradas uma a uma. Peças únicas para acolher, presentear e eternizar os primeiros dias.</p>
       <div class="hctas">
-        <a class="btn btnp" href="https://wa.me/5599999999999" target="_blank" rel="noopener">
+        <a class="btn btnp" id="pg-hero-cta1-link" href="https://wa.me/5599999999999" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.7-.1-.4-.1-.9-.3-1.6-.6-2.8-1.2-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8 0-1.3.7-2 .9-2.2.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2.1.4 0 .5l-.4.6c-.2.2-.3.4-.1.7.2.3.8 1.3 1.7 2 1.2.9 1.6.9 1.9 1.1.2.1.4.1.5-.1l.6-.8c.2-.2.4-.2.6-.1l1.8.9c.2.1.4.2.4.3.1.2.1.8-.1 1.4Z"/></svg>
-          Encomendar no WhatsApp
+          <span id="pg-hero-cta1">Encomendar no WhatsApp</span>
         </a>
-        <a class="btn btng" href="#colecoes">Ver coleções</a>
+        <a class="btn btng" href="#colecoes" id="pg-hero-cta2">Ver coleções</a>
       </div>
     </div>
     <div class="cwrap rv">
@@ -397,21 +421,21 @@ footer{background:var(--olive);color:#fff;padding:56px 0 calc(30px + env(safe-ar
   <div class="wrap sobre-g">
     <div class="sobre-ph rv">
       <span class="acc"></span><span class="blb"></span>
-      <div class="sframe"><img src="images/img01.jpg" alt="Aladiane, fundadora da Maricota"></div>
+      <div class="sframe"><img id="pg-sobre-photo" src="images/img01.jpg" alt="Aladiane, fundadora da Maricota"></div>
       <div class="sstat"><b>100%</b><span>Feito à mão</span></div>
     </div>
     <div class="sobre-cp rv">
       <span class="ey">Quem está por trás da Maricota</span>
-      <h2 class="stitle">Olá, eu sou <em>Aladiane</em></h2>
-      <p class="ssub">Artesã, criadora e fundadora</p>
-      <p>A Maricota nasceu em 2024 de um desejo simples: criar peças que fossem além de brinquedos. Cada bichinho que sai das minhas mãos carrega uma intenção de acolher, de durar e de virar memória.</p>
-      <p>Trabalho no estilo <strong>Scandi-Boho</strong>: delicado, minimalista e aconchegante. Materiais selecionados e seguros, pensados para os primeiros anos dos pequenos.</p>
+      <h2 class="stitle">Olá, eu sou <em id="pg-sobre-name">Aladiane</em></h2>
+      <p class="ssub" id="pg-sobre-role">Artesã, criadora e fundadora</p>
+      <p id="pg-sobre-p1">A Maricota nasceu em 2024 de um desejo simples: criar peças que fossem além de brinquedos. Cada bichinho que sai das minhas mãos carrega uma intenção de acolher, de durar e de virar memória.</p>
+      <p id="pg-sobre-p2">Trabalho no estilo <strong>Scandi-Boho</strong>: delicado, minimalista e aconchegante. Materiais selecionados e seguros, pensados para os primeiros anos dos pequenos.</p>
       <div class="vals">
         <div class="val"><span class="vi">✦</span><div><h4>Feito com propósito</h4><p>Cada peça é única, costurada à mão com atenção a cada detalhe.</p></div></div>
         <div class="val"><span class="vi">♥</span><div><h4>Para momentos especiais</h4><p>Quartinho, chá de bebê, presente afetivo e memória para a vida.</p></div></div>
         <div class="val"><span class="vi">❀</span><div><h4>Materiais seguros</h4><p>Tecidos selecionados, seguros para os primeiros anos.</p></div></div>
       </div>
-      <p class="sig">Aladiane</p>
+      <p class="sig" id="pg-sobre-sig">Aladiane</p>
     </div>
   </div>
 </section>
@@ -547,9 +571,9 @@ footer{background:var(--olive);color:#fff;padding:56px 0 calc(30px + env(safe-ar
   <div class="wrap quote-g">
     <div class="quote-cp">
       <div class="qm">"</div>
-      <blockquote>Cada bichinho conta uma história. Para <span>decorar o quartinho</span>, presentear ou <span>eternizar uma fase tão especial</span>. Seja bem-vindo ao nosso mundo de suavidade e ternura.</blockquote>
-      <p class="by">Aladiane, Fundadora da Maricota</p>
-      <p class="qsig">com carinho</p>
+      <blockquote id="pg-quote-text">Cada bichinho conta uma história. Para <span>decorar o quartinho</span>, presentear ou <span>eternizar uma fase tão especial</span>. Seja bem-vindo ao nosso mundo de suavidade e ternura.</blockquote>
+      <p class="by" id="pg-quote-by">Aladiane, Fundadora da Maricota</p>
+      <p class="qsig" id="pg-quote-sig">com carinho</p>
     </div>
     <div class="quote-illo">
       <svg viewBox="0 0 260 180" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor">
@@ -606,24 +630,8 @@ footer{background:var(--olive);color:#fff;padding:56px 0 calc(30px + env(safe-ar
 <!-- FOOTER -->
 <footer>
   <div class="wrap">
-    <div class="ft-illo">
-      <svg viewBox="0 0 260 180" fill="none" stroke="currentColor" stroke-width="1.5">
-        <rect x="22" y="120" width="216" height="28" rx="10"/>
-        <path d="M42 120V64Q42 44 62 44L198 44Q218 44 218 64V120"/>
-        <path d="M84 44V24Q84 12 98 12L174 12Q188 12 188 24V44"/>
-        <line x1="136" y1="44" x2="136" y2="96"/>
-        <path d="M130 92L136 116L142 92"/>
-        <rect x="58" y="70" width="58" height="36" rx="7"/>
-        <circle cx="76" cy="88" r="5"/><circle cx="94" cy="88" r="5"/><circle cx="112" cy="88" r="5"/>
-        <circle cx="190" cy="88" r="21"/><circle cx="190" cy="88" r="8"/>
-        <line x1="190" y1="67" x2="190" y2="109" stroke-width="1"/>
-        <line x1="169" y1="88" x2="211" y2="88" stroke-width="1"/>
-        <ellipse cx="118" cy="20" rx="13" ry="7"/>
-        <path d="M118 27Q127 46 131 64Q134 80 136 96" stroke-dasharray="3 3"/>
-      </svg>
-    </div>
-    <img class="ft-logo" src="images/logo-white.png" alt="Maricota">
-    <p class="ft-tag">Maternidade dos sonhos, feita com amor <span class="ft-heart">♥</span></p>
+    <img class="ft-logo" id="pg-ft-logo" src="images/logo-white.png" alt="Maricota">
+    <p class="ft-tag" id="pg-footer-tag">Maternidade dos sonhos, feita com amor <span class="ft-heart">♥</span></p>
     <div class="ft-links">
       <a id="ft-wa" href="https://wa.me/5599999999999" target="_blank" rel="noopener">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.7-.1-.4-.1-.9-.3-1.6-.6-2.8-1.2-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8 0-1.3.7-2 .9-2.2.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2.1.4 0 .5l-.4.6c-.2.2-.3.4-.1.7.2.3.8 1.3 1.7 2 1.2.9 1.6.9 1.9 1.1.2.1.4.1.5-.1l.6-.8c.2-.2.4-.2.6-.1l1.8.9c.2.1.4.2.4.3.1.2.1.8-.1 1.4Z"/></svg>
@@ -650,22 +658,38 @@ footer{background:var(--olive);color:#fff;padding:56px 0 calc(30px + env(safe-ar
     <button class="lb-cl" id="lbClose" aria-label="Fechar">✕</button>
     <button class="lb-nav prev" id="lbPrev" aria-label="Anterior">‹</button>
     <button class="lb-nav next" id="lbNext" aria-label="Próximo">›</button>
-    <div class="lb-stage"><img id="lbImg" alt=""></div>
-    <div class="lb-side">
-      <p class="lb-cat" id="lbCat"></p>
-      <h3 class="lb-name" id="lbName"></h3>
-      <p class="lb-det" id="lbDet"></p>
-      <p class="lb-price" id="lbPrice"></p>
-      <div class="lb-material" id="lbMaterial" style="display:none">
-        <span class="lb-material-label">Material</span>
-        <span class="lb-material-val" id="lbFabric"></span>
+    <div class="lb-stage">
+      <img id="lbImg" alt="">
+      <div class="lb-img-hint" id="lbHint">
+        <div class="lb-img-dots" id="lbImgDots"></div>
+        <span>deslize</span>
       </div>
-      <p class="lb-counter" id="lbCounter" style="display:none"></p>
-      <div class="lb-dots" id="lbDots"></div>
-      <a class="lb-wa" id="lbWa" href="#" target="_blank" rel="noopener">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.7-.1-.4-.1-.9-.3-1.6-.6-2.8-1.2-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8 0-1.3.7-2 .9-2.2.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2.1.4 0 .5l-.4.6c-.2.2-.3.4-.1.7.2.3.8 1.3 1.7 2 1.2.9 1.6.9 1.9 1.1.2.1.4.1.5-.1l.6-.8c.2-.2.4-.2.6-.1l1.8.9c.2.1.4.2.4.3.1.2.1.8-.1 1.4Z"/></svg>
-        Quero esta peça
-      </a>
+    </div>
+    <div class="lb-body">
+      <div class="lb-scroll">
+        <p class="lb-cat" id="lbCat"></p>
+        <h3 class="lb-name" id="lbName"></h3>
+        <p class="lb-det" id="lbDet"></p>
+        <div class="lb-divider"></div>
+        <div class="lb-info-row" id="lbMaterial" style="display:none">
+          <span class="lir-icon">🧵</span>
+          <div class="lir-body">
+            <div class="lir-label">Material</div>
+            <div class="lir-val" id="lbFabric"></div>
+          </div>
+        </div>
+        <p class="lb-counter" id="lbCounter" style="display:none"></p>
+        <div class="lb-dots" id="lbDots"></div>
+      </div>
+      <div class="lb-foot">
+        <div class="lb-price-row">
+          <div class="lb-price"><small>Valor</small><span id="lbPrice"></span></div>
+          <a class="lb-wa" id="lbWa" href="#" target="_blank" rel="noopener">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.7 4.8-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.7-.1-.4-.1-.9-.3-1.6-.6-2.8-1.2-4.6-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.8 0-1.3.7-2 .9-2.2.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2.1.4 0 .5l-.4.6c-.2.2-.3.4-.1.7.2.3.8 1.3 1.7 2 1.2.9 1.6.9 1.9 1.1.2.1.4.1.5-.1l.6-.8c.2-.2.4-.2.6-.1l1.8.9c.2.1.4.2.4.3.1.2.1.8-.1 1.4Z"/></svg>
+            Quero esta peça
+          </a>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -716,44 +740,85 @@ document.querySelectorAll('.filter').forEach(f=>{const k=f.dataset.filter;const 
 /* lightbox */
 const lb=document.getElementById('lb'),lbImg=document.getElementById('lbImg'),
   lbCat=document.getElementById('lbCat'),lbName=document.getElementById('lbName'),
-  lbDet=document.getElementById('lbDet'),lbPrice=document.getElementById('lbPrice'),
+  lbDet=document.getElementById('lbDet'),lbPriceEl=document.getElementById('lbPrice'),
   lbCounter=document.getElementById('lbCounter'),lbMaterial=document.getElementById('lbMaterial'),
   lbFabric=document.getElementById('lbFabric'),lbWa=document.getElementById('lbWa'),
-  lbDots=document.getElementById('lbDots'),lbPrev=document.getElementById('lbPrev'),lbNext=document.getElementById('lbNext');
-let gallery=[],gi=0;
+  lbDots=document.getElementById('lbDots'),lbPrev=document.getElementById('lbPrev'),lbNext=document.getElementById('lbNext'),
+  lbHint=document.getElementById('lbHint'),lbImgDots=document.getElementById('lbImgDots');
+let gallery=[],gi=0,hintTimer=null;
 function resolveRes(p){return(window.__resources&&window.__resources[p])||p}
 function paint(){
   lbImg.style.opacity=0;
   lbImg.onerror=lbImg.onload=()=>lbImg.style.opacity=1;
   lbImg.src=resolveRes(gallery[gi]);
   if(lbImg.complete&&lbImg.naturalWidth)lbImg.style.opacity=1;
-  [...lbDots.children].forEach((d,i)=>d.classList.toggle('on',i===gi));
-  if(gallery.length>1){lbCounter.style.display='block';lbCounter.textContent=`foto ${gi+1} de ${gallery.length}`;}
+  [...lbImgDots.children].forEach((d,i)=>d.classList.toggle('on',i===gi));
+}
+function showHint(){
+  lbHint.classList.add('show');
+  clearTimeout(hintTimer);
+  hintTimer=setTimeout(()=>lbHint.classList.remove('show'),2400);
 }
 function openLB(card){
   gallery=card.dataset.images.split('|');gi=0;
   lbCat.textContent=card.dataset.catLabel;
   lbName.innerHTML=card.querySelector('.card-name').innerHTML;
-  lbDet.textContent=card.dataset.det;lbPrice.textContent=card.dataset.price;
+  lbDet.textContent=card.dataset.det;
+  lbPriceEl.textContent=card.dataset.price;
   lbCounter.style.display='none';
   const fabric=card.dataset.fabric||'';
   if(fabric){lbFabric.textContent=fabric;lbMaterial.style.display='flex';}else{lbMaterial.style.display='none';}
   const productName=card.querySelector('.card-name').textContent;
   const catLabel=card.dataset.catLabel||'produtos';
+  const waNum=(JSON.parse(localStorage.getItem('mc_cfg')||'{}').waNumber)||'5599999999999';
   const waMsg=encodeURIComponent(`Olá Maricota, tenho interesse no ${productName} da seção de ${catLabel}s!`);
-  lbWa.href=`https://wa.me/5599999999999?text=${waMsg}`;
-  lbDots.innerHTML='';const multi=gallery.length>1;
+  lbWa.href=`https://wa.me/${waNum}?text=${waMsg}`;
+  const multi=gallery.length>1;
   lbPrev.hidden=lbNext.hidden=!multi;
-  if(multi)gallery.forEach((_,i)=>{const d=document.createElement('i');d.onclick=()=>{gi=i;paint()};lbDots.appendChild(d)});
+  lbImgDots.innerHTML='';
+  if(multi){gallery.forEach((_,i)=>{const d=document.createElement('i');d.classList.toggle('on',i===0);lbImgDots.appendChild(d)});lbHint.classList.remove('show');setTimeout(showHint,400);}
+  else{lbHint.classList.remove('show')}
   paint();lb.classList.add('open');document.body.style.overflow='hidden';
 }
-function closeLB(){lb.classList.remove('open');document.body.style.overflow=''}
+/* touch swipe na imagem */
+let lbTx=0;
+document.getElementById('lbImg').addEventListener('touchstart',e=>lbTx=e.touches[0].clientX,{passive:true});
+document.getElementById('lbImg').addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-lbTx;if(Math.abs(dx)>38&&gallery.length>1){gi=(gi+(dx>0?-1:1)+gallery.length)%gallery.length;paint();showHint()}},{passive:true});
+function closeLB(){lb.classList.remove('open');document.body.style.overflow='';clearTimeout(hintTimer)}
 cards.forEach(c=>c.addEventListener('click',()=>openLB(c)));
-lbPrev.onclick=()=>{gi=(gi-1+gallery.length)%gallery.length;paint()};
-lbNext.onclick=()=>{gi=(gi+1)%gallery.length;paint()};
+lbPrev.onclick=()=>{gi=(gi-1+gallery.length)%gallery.length;paint();showHint()};
+lbNext.onclick=()=>{gi=(gi+1)%gallery.length;paint();showHint()};
 document.getElementById('lbClose').onclick=closeLB;
 lb.addEventListener('click',e=>{if(e.target===lb)closeLB()});
 addEventListener('keydown',e=>{if(!lb.classList.contains('open'))return;if(e.key==='Escape')closeLB();if(e.key==='ArrowLeft'&&!lbPrev.hidden)lbPrev.click();if(e.key==='ArrowRight'&&!lbNext.hidden)lbNext.click()});
+
+/* ── aplica conteúdo editável do admin ── */
+(function(){
+  const pg=JSON.parse(localStorage.getItem('mc_page')||'{}');
+  function txt(id,v){const el=document.getElementById(id);if(el&&v!==undefined&&v!=='')el.textContent=v}
+  function html(id,v){const el=document.getElementById(id);if(el&&v!==undefined&&v!=='')el.innerHTML=v}
+  function src(id,v){const el=document.getElementById(id);if(el&&v!==undefined&&v!=='')el.src=v}
+  function href(id,v){const el=document.getElementById(id);if(el&&v!==undefined&&v!=='')el.href=v}
+  txt('pg-hero-title',pg.heroTitle);
+  html('pg-hero-sub',pg.heroSub);
+  txt('pg-hero-cta1',pg.heroCta1);
+  txt('pg-hero-cta2',pg.heroCta2);
+  src('pg-sobre-photo',pg.sobrePhoto);
+  txt('pg-sobre-name',pg.sobreName);
+  txt('pg-sobre-role',pg.sobreRole);
+  txt('pg-sobre-p1',pg.sobreP1);
+  txt('pg-sobre-p2',pg.sobreP2);
+  txt('pg-sobre-sig',pg.sobreSig);
+  txt('pg-quote-text',pg.quoteText);
+  txt('pg-quote-by',pg.quoteBy);
+  txt('pg-quote-sig',pg.quoteSig);
+  txt('pg-footer-tag',pg.footerTag);
+  href('ft-wa',pg.footerWa||'https://wa.me/5599999999999');
+  href('ft-ig',pg.footerIg||'https://instagram.com/maricota');
+  src('pg-nav-logo',pg.logo);
+  src('pg-hero-logo',pg.logo);
+  src('pg-ft-logo',pg.logo);
+})();
 </script>
 </body>
 </html>

@@ -273,6 +273,34 @@ button,input,select,textarea{font-family:inherit;font-size:inherit}
 .toast.ok .tdot{background:var(--sage)}
 .toast.err .tdot{background:var(--red)}
 
+/* CONTEÚDO DA PÁGINA */
+.ctn-grid{display:grid;gap:16px;max-width:760px}
+.ctn-card{background:var(--white);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.ctn-head{padding:16px 22px;border-bottom:1px solid var(--lines);display:flex;align-items:center;gap:11px;cursor:pointer;user-select:none}
+.ctn-head .chi{font-size:1.2rem;flex:none}
+.ctn-head h3{font-family:'Cormorant Garamond',serif;font-size:1.12rem;flex:1}
+.ctn-head .carrow{font-size:.8rem;color:var(--ink3);transition:transform .3s;flex:none}
+.ctn-card.open .carrow{transform:rotate(180deg)}
+.ctn-body{display:none;padding:20px 22px;border-top:0}
+.ctn-card.open .ctn-body{display:block}
+.ctn-fld{margin-bottom:14px}
+.ctn-fld label{display:block;font-size:.72rem;font-weight:600;letter-spacing:.04em;color:var(--ink2);margin-bottom:6px}
+.ctn-fld input,.ctn-fld textarea{width:100%;padding:10px 13px;border:1.5px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);font-size:.88rem;outline:none;transition:border-color .22s;font-family:inherit}
+.ctn-fld input:focus,.ctn-fld textarea:focus{border-color:var(--brand)}
+.ctn-fld textarea{min-height:72px;resize:vertical;line-height:1.5}
+.ctn-fld .hint{font-size:.68rem;color:var(--ink3);margin-top:4px}
+.ctn-photo{display:flex;align-items:center;gap:14px;margin-bottom:14px}
+.ctn-photo-prev{width:72px;height:90px;border-radius:10px;overflow:hidden;background:var(--bg2);flex:none;border:1.5px solid var(--line)}
+.ctn-photo-prev img{width:100%;height:100%;object-fit:cover}
+.ctn-photo-ctrl{flex:1}
+.ctn-photo-ctrl label{display:block;font-size:.72rem;font-weight:600;letter-spacing:.04em;color:var(--ink2);margin-bottom:8px}
+.ctn-up{position:relative;display:inline-flex;align-items:center;gap:7px;padding:9px 16px;border-radius:100px;border:1.5px solid var(--line);background:var(--bg);color:var(--ink2);font-size:.78rem;font-weight:500;cursor:pointer;transition:all .22s;min-height:38px}
+.ctn-up:hover{border-color:var(--brand);color:var(--brand)}
+.ctn-up input[type=file]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+.ctn-row{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-bottom:14px}
+.ctn-save{padding:10px 24px;background:var(--brand);color:#fff;border:none;border-radius:100px;font-size:.82rem;font-weight:600;cursor:pointer;min-height:38px;transition:background .22s;margin-top:4px}
+.ctn-save:hover{background:var(--brand-l)}
+
 /* RESPONSIVE */
 @media(max-width:860px){
   #app.ready{flex-direction:column}
@@ -324,10 +352,11 @@ button,input,select,textarea{font-family:inherit;font-size:inherit}
       <button class="sbl" data-page="produtos"><span class="ico">🧸</span><span class="lbl">Produtos</span><span class="bdg" id="prodBdg">0</span></button>
       <button class="sbl" data-page="colecoes"><span class="ico">✦</span><span class="lbl">Coleções</span></button>
       <div class="sb-grp">Personalizar</div>
+      <button class="sbl" data-page="conteudo"><span class="ico">✏️</span><span class="lbl">Conteúdo da Página</span></button>
       <button class="sbl" data-page="aparencia"><span class="ico">🎨</span><span class="lbl">Aparência</span></button>
       <div class="sb-grp">Sistema</div>
       <button class="sbl" data-page="settings"><span class="ico">⚙️</span><span class="lbl">Configurações</span></button>
-      <a class="sbl" href="Maricota Portfolio.html" target="_blank"><span class="ico">🔗</span><span class="lbl">Ver portfólio</span></a>
+      <a class="sbl" href="index.html" target="_blank"><span class="ico">🔗</span><span class="lbl">Ver portfólio</span></a>
     </div>
     <div class="sb-foot">
       <div class="sb-user">
@@ -408,6 +437,100 @@ button,input,select,textarea{font-family:inherit;font-size:inherit}
         </div>
       </div>
 
+      <!-- CONTEÚDO DA PÁGINA -->
+      <div class="pg" id="conteudo-pg">
+        <p style="font-size:.84rem;color:var(--ink3);margin-bottom:22px;max-width:640px">Edite os textos, fotos e links do portfólio. As mudanças são aplicadas automaticamente quando você salvar e recarregar o portfólio.</p>
+        <div class="ctn-grid">
+
+          <!-- HERO -->
+          <div class="ctn-card open" id="ctn-hero">
+            <div class="ctn-head" onclick="toggleCtn('ctn-hero')">
+              <span class="chi">🏠</span><h3>Capa (Hero)</h3><span class="carrow">▾</span>
+            </div>
+            <div class="ctn-body">
+              <div class="ctn-fld"><label>Título principal</label><input type="text" id="ct-heroTitle" placeholder="Maternidade dos sonhos, feita à mão."><div class="hint">Texto que aparece em destaque na capa.</div></div>
+              <div class="ctn-fld"><label>Subtítulo / Lead</label><textarea id="ct-heroSub" rows="2" placeholder="Bichinhos, roupinhas e lembranças..."></textarea></div>
+              <div class="ctn-row">
+                <div class="ctn-fld" style="margin:0"><label>Texto botão WhatsApp</label><input type="text" id="ct-heroCta1" placeholder="Encomendar no WhatsApp"></div>
+                <div class="ctn-fld" style="margin:0"><label>Texto botão coleções</label><input type="text" id="ct-heroCta2" placeholder="Ver coleções"></div>
+              </div>
+              <button class="ctn-save" onclick="saveCtn('hero')">Salvar capa</button>
+            </div>
+          </div>
+
+          <!-- LOGO -->
+          <div class="ctn-card" id="ctn-logo">
+            <div class="ctn-head" onclick="toggleCtn('ctn-logo')">
+              <span class="chi">🌿</span><h3>Logo</h3><span class="carrow">▾</span>
+            </div>
+            <div class="ctn-body">
+              <div class="ctn-photo">
+                <div class="ctn-photo-prev" style="width:90px;height:46px;border-radius:8px"><img id="logo-prev" src="images/img00.jpg" alt=""></div>
+                <div class="ctn-photo-ctrl">
+                  <label>Logo atual</label>
+                  <div class="ctn-up">📷 Trocar logo<input type="file" accept="image/*" onchange="uploadImg(event,'logo','logo-prev')"></div>
+                  <div class="hint" style="margin-top:7px">Aparece no menu e no rodapé. Fundo transparente (.png) recomendado.</div>
+                </div>
+              </div>
+              <button class="ctn-save" onclick="saveCtn('logo')">Salvar logo</button>
+            </div>
+          </div>
+
+          <!-- SOBRE / ALADIANE -->
+          <div class="ctn-card" id="ctn-sobre">
+            <div class="ctn-head" onclick="toggleCtn('ctn-sobre')">
+              <span class="chi">👩‍🎨</span><h3>Seção Sobre / Aladiane</h3><span class="carrow">▾</span>
+            </div>
+            <div class="ctn-body">
+              <div class="ctn-photo">
+                <div class="ctn-photo-prev"><img id="sobre-prev" src="images/img01.jpg" alt=""></div>
+                <div class="ctn-photo-ctrl">
+                  <label>Foto da Aladiane</label>
+                  <div class="ctn-up">📷 Trocar foto<input type="file" accept="image/*" onchange="uploadImg(event,'sobrePhoto','sobre-prev')"></div>
+                </div>
+              </div>
+              <div class="ctn-row">
+                <div class="ctn-fld" style="margin:0"><label>Nome</label><input type="text" id="ct-sobreName" placeholder="Aladiane"></div>
+                <div class="ctn-fld" style="margin:0"><label>Cargo / Papel</label><input type="text" id="ct-sobreRole" placeholder="Artesã, criadora e fundadora"></div>
+              </div>
+              <div class="ctn-fld"><label>Parágrafo 1</label><textarea id="ct-sobreP1" rows="3" placeholder="A Maricota nasceu em 2024..."></textarea></div>
+              <div class="ctn-fld"><label>Parágrafo 2</label><textarea id="ct-sobreP2" rows="3" placeholder="Trabalho no estilo Scandi-Boho..."></textarea></div>
+              <div class="ctn-fld"><label>Assinatura (manuscrita)</label><input type="text" id="ct-sobreSig" placeholder="Aladiane"></div>
+              <button class="ctn-save" onclick="saveCtn('sobre')">Salvar seção Sobre</button>
+            </div>
+          </div>
+
+          <!-- CITAÇÃO -->
+          <div class="ctn-card" id="ctn-quote">
+            <div class="ctn-head" onclick="toggleCtn('ctn-quote')">
+              <span class="chi">💬</span><h3>Citação (faixa verde)</h3><span class="carrow">▾</span>
+            </div>
+            <div class="ctn-body">
+              <div class="ctn-fld"><label>Texto da citação</label><textarea id="ct-quoteText" rows="3" placeholder="Cada bichinho conta uma história..."></textarea></div>
+              <div class="ctn-row">
+                <div class="ctn-fld" style="margin:0"><label>Autor</label><input type="text" id="ct-quoteBy" placeholder="Aladiane, Fundadora da Maricota"></div>
+                <div class="ctn-fld" style="margin:0"><label>Assinatura cursiva</label><input type="text" id="ct-quoteSig" placeholder="com carinho"></div>
+              </div>
+              <button class="ctn-save" onclick="saveCtn('quote')">Salvar citação</button>
+            </div>
+          </div>
+
+          <!-- RODAPÉ -->
+          <div class="ctn-card" id="ctn-footer">
+            <div class="ctn-head" onclick="toggleCtn('ctn-footer')">
+              <span class="chi">🔗</span><h3>Rodapé e Links</h3><span class="carrow">▾</span>
+            </div>
+            <div class="ctn-body">
+              <div class="ctn-fld"><label>Tagline do rodapé</label><input type="text" id="ct-footerTag" placeholder="Maternidade dos sonhos, feita com amor ♥"></div>
+              <div class="ctn-fld"><label>Link do WhatsApp</label><input type="url" id="ct-footerWa" placeholder="https://wa.me/5599999999999"><div class="hint">Inclua o número completo com DDI. Ex: https://wa.me/5511999999999</div></div>
+              <div class="ctn-fld"><label>Link do Instagram</label><input type="url" id="ct-footerIg" placeholder="https://instagram.com/maricota"></div>
+              <button class="ctn-save" onclick="saveCtn('footer')">Salvar rodapé</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
       <!-- APARÊNCIA -->
       <div class="pg" id="aparencia-pg">
         <p style="font-size:.84rem;color:var(--ink3);margin-bottom:20px;max-width:640px">Personalize as cores do portfólio. As mudanças ficam salvas e são aplicadas quando o cliente acessa.</p>
@@ -477,7 +600,7 @@ button,input,select,textarea{font-family:inherit;font-size:inherit}
           <div class="sc">
             <h3>Portfólio público</h3>
             <p class="desc">Link do portfólio que seus clientes acessam.</p>
-            <a class="lp" href="Maricota Portfolio.html" target="_blank">🔗 Abrir portfólio</a>
+            <a class="lp" href="index.html" target="_blank">🔗 Abrir portfólio</a>
           </div>
         </div>
       </div>
@@ -627,7 +750,7 @@ document.getElementById('logoutBtn').addEventListener('click',()=>{
 });
 
 /* ───── NAV ───── */
-const pgTitles={dash:'Dashboard',produtos:'Nossos Produtos',colecoes:'Coleções',aparencia:'Aparência',settings:'Configurações'};
+const pgTitles={dash:'Dashboard',produtos:'Nossos Produtos',colecoes:'Coleções',conteudo:'Conteúdo da Página',aparencia:'Aparência',settings:'Configurações'};
 document.querySelectorAll('.sbl[data-page]').forEach(b=>b.addEventListener('click',()=>navTo(b.dataset.page)));
 function navTo(pg){
   document.querySelectorAll('.sbl[data-page]').forEach(b=>b.classList.toggle('on',b.dataset.page===pg));
@@ -639,6 +762,7 @@ function navTo(pg){
   if(pg==='dash')renderDash();
   if(pg==='produtos')renderGrid();
   if(pg==='colecoes')renderColecoes();
+  if(pg==='conteudo')loadConteudo();
   if(pg==='aparencia')loadAppearanceUI();
   if(pg==='settings')loadSettings();
 }
@@ -933,6 +1057,83 @@ function applyAppearance(){
   r.setProperty('--olive',appCfg.brand||DAPP.brand);
   r.setProperty('--olivel',appCfg.brandL||DAPP.brandL);
   r.setProperty('--olivep',appCfg.brandP||DAPP.brandP);
+}
+
+/* ───── CONTEÚDO DA PÁGINA ───── */
+let mcPage=LS.get('mc_page')||{};
+let pendingImgs={};
+
+function toggleCtn(id){
+  const el=document.getElementById(id);
+  el.classList.toggle('open');
+}
+
+function loadConteudo(){
+  mcPage=LS.get('mc_page')||{};
+  const f=(id,key)=>{const el=document.getElementById(id);if(el)el.value=mcPage[key]||''};
+  f('ct-heroTitle','heroTitle');
+  f('ct-heroSub','heroSub');
+  f('ct-heroCta1','heroCta1');
+  f('ct-heroCta2','heroCta2');
+  f('ct-sobreName','sobreName');
+  f('ct-sobreRole','sobreRole');
+  f('ct-sobreP1','sobreP1');
+  f('ct-sobreP2','sobreP2');
+  f('ct-sobreSig','sobreSig');
+  f('ct-quoteText','quoteText');
+  f('ct-quoteBy','quoteBy');
+  f('ct-quoteSig','quoteSig');
+  f('ct-footerTag','footerTag');
+  f('ct-footerWa','footerWa');
+  f('ct-footerIg','footerIg');
+  if(mcPage.sobrePhoto){const p=document.getElementById('sobre-prev');if(p)p.src=mcPage.sobrePhoto}
+  if(mcPage.logo){const p=document.getElementById('logo-prev');if(p)p.src=mcPage.logo}
+}
+
+function uploadImg(e,key,prevId){
+  const file=e.target.files[0];if(!file)return;
+  const r=new FileReader();
+  r.onload=ev=>{
+    pendingImgs[key]=ev.target.result;
+    const prev=document.getElementById(prevId);
+    if(prev)prev.src=ev.target.result;
+  };
+  r.readAsDataURL(file);
+}
+
+function saveCtn(section){
+  mcPage=LS.get('mc_page')||{};
+  const g=(id)=>{const el=document.getElementById(id);return el?el.value.trim():''};
+  if(section==='hero'||section==='all'){
+    const t=g('ct-heroTitle');if(t)mcPage.heroTitle=t;
+    const s=g('ct-heroSub');if(s)mcPage.heroSub=s;
+    const c1=g('ct-heroCta1');if(c1)mcPage.heroCta1=c1;
+    const c2=g('ct-heroCta2');if(c2)mcPage.heroCta2=c2;
+  }
+  if(section==='logo'||section==='all'){
+    if(pendingImgs.logo)mcPage.logo=pendingImgs.logo;
+  }
+  if(section==='sobre'||section==='all'){
+    if(pendingImgs.sobrePhoto)mcPage.sobrePhoto=pendingImgs.sobrePhoto;
+    const sn=g('ct-sobreName');if(sn)mcPage.sobreName=sn;
+    const sr=g('ct-sobreRole');if(sr)mcPage.sobreRole=sr;
+    const sp1=g('ct-sobreP1');if(sp1)mcPage.sobreP1=sp1;
+    const sp2=g('ct-sobreP2');if(sp2)mcPage.sobreP2=sp2;
+    const ss=g('ct-sobreSig');if(ss)mcPage.sobreSig=ss;
+  }
+  if(section==='quote'||section==='all'){
+    const qt=g('ct-quoteText');if(qt)mcPage.quoteText=qt;
+    const qb=g('ct-quoteBy');if(qb)mcPage.quoteBy=qb;
+    const qs=g('ct-quoteSig');if(qs)mcPage.quoteSig=qs;
+  }
+  if(section==='footer'||section==='all'){
+    const ft=g('ct-footerTag');if(ft)mcPage.footerTag=ft;
+    const fw=g('ct-footerWa');if(fw)mcPage.footerWa=fw;
+    const fi=g('ct-footerIg');if(fi)mcPage.footerIg=fi;
+  }
+  LS.set('mc_page',mcPage);
+  pendingImgs={};
+  showToast('Salvo! Reabra o portfólio para ver.','ok');
 }
 
 /* ───── SETTINGS ───── */
