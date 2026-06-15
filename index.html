@@ -690,6 +690,54 @@ footer{background:var(--olive);color:#fff;padding:56px 0 calc(30px + env(safe-ar
 </div>
 
 <script>
+/* ── dados dinâmicos salvos pelo admin ── */
+(function(){
+  function lsg(k){try{return JSON.parse(localStorage.getItem(k))}catch{return null}}
+  function esc(s){return(s||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+  function nm(n){var w=(n||'').split(' ');return w.length>1?esc(w[0])+' <em>'+esc(w.slice(1).join(' '))+'</em>':esc(n||'')}
+  function mkCard(p,cats){
+    var cat=cats.find(function(c){return c.id===p.category});
+    var cl=cat?cat.label:(p.category||'');
+    var im=(p.images||[]).join('|');
+    var fi=p.images&&p.images[0]?p.images[0]:'';
+    var ml=p.images&&p.images.length>1;
+    var dots=ml?'<span class="card-multi">'+Array(p.images.length).fill('<i></i>').join('')+'</span>':'';
+    var tag=p.featured?'<span class="ctag2 hot">★ Destaque</span>':'<span class="ctag2">'+esc(cl)+'</span>';
+    return'<article class="card'+(p.featured?' feat':'')+'" data-category="'+esc(p.category||'')+'" data-det="'+esc(p.det||'')+'" data-price="'+esc(p.price||'')+'" data-cat-label="'+esc(cl)+'" data-fabric="'+esc(p.fabric||'')+'" data-images="'+esc(im)+'">'+
+      '<div class="card-med">'+tag+'<span class="czoom">⤢</span>'+(fi?'<img src="'+fi+'" alt="'+esc(p.name||'')+'">' :'')+dots+'</div>'+
+      '<div class="card-bod"><h3 class="card-name">'+nm(p.name)+'</h3><p class="card-det">'+esc(p.det||'')+'</p>'+
+      '<div class="card-ft"><span class="card-price">'+esc(p.price||'')+'</span><span class="card-more">ampliar →</span></div></div></article>';
+  }
+  function mkSlide(sl,prods){
+    var p=sl.type==='product'?prods.find(function(x){return x.id===sl.id}):null;
+    var img=p&&p.images&&p.images[0]?p.images[0]:'';
+    if(!img)return'';
+    return'<div class="cslide"><img src="'+img+'" alt="'+esc(p?p.name:'')+'"><div class="cgrad"></div><div class="ccap"><div class="cn">'+esc(p?p.name:sl.id||'')+'</div><div class="cd">'+esc(sl.label||'')+'</div></div></div>';
+  }
+  var prods=lsg('mc_prods');
+  var cats=lsg('mc_cats')||[{id:'bichinhos',label:'Bichinho'},{id:'roupinhas',label:'Roupinha'},{id:'porta',label:'Porta Maternidade'}];
+  var car=lsg('mc_carousel');
+  var app=lsg('mc_app');
+  /* aparência */
+  if(app){
+    var rs=document.documentElement.style;
+    if(app.brand){rs.setProperty('--olive',app.brand);rs.setProperty('--olived',app.brand)}
+    if(app.accent){rs.setProperty('--sage',app.accent)}
+    if(app.brandP){rs.setProperty('--sages',app.brandP);rs.setProperty('--sagep',app.brandP)}
+    if(app.sec){rs.setProperty('--bg2',app.sec)}
+  }
+  /* grade de produtos */
+  if(prods&&prods.length){
+    var g=document.getElementById('grid');
+    if(g)g.innerHTML=prods.map(function(p){return mkCard(p,cats)}).join('');
+  }
+  /* carrossel */
+  if(car&&car.length&&prods&&prods.length){
+    var ct=document.getElementById('ctrack');
+    if(ct){var h=car.map(function(s){return mkSlide(s,prods)}).filter(Boolean).join('');if(h)ct.innerHTML=h}
+  }
+})();
+
 /* nav + fab */
 const nav=document.getElementById('nav'),fab=document.getElementById('fab');
 const onScroll=()=>{nav.classList.toggle('sc',scrollY>20);fab.classList.toggle('show',scrollY>520)};

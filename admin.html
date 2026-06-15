@@ -672,7 +672,27 @@ button,input,select,textarea{font-family:inherit;font-size:inherit}
 
 <script>
 /* ───── STORAGE ───── */
-const LS={get:k=>{try{return JSON.parse(localStorage.getItem(k))}catch{return null}},set:(k,v)=>localStorage.setItem(k,JSON.stringify(v))};
+const LS={
+  get:k=>{try{return JSON.parse(localStorage.getItem(k))}catch{return null}},
+  set:(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){if(typeof showToast==='function')showToast('Erro ao salvar: muitos dados. Reduza o nº ou tamanho das fotos.','err');else console.error('QuotaExceeded',e)}}
+};
+function compressImg(file,cb,maxPx,qual){
+  maxPx=maxPx||700;qual=qual||0.72;
+  const r=new FileReader();
+  r.onload=ev=>{
+    const img=new Image();
+    img.onload=()=>{
+      let w=img.width,h=img.height;
+      if(w>maxPx||h>maxPx){if(w>h){h=Math.round(h*maxPx/w);w=maxPx}else{w=Math.round(w*maxPx/h);h=maxPx}}
+      const c=document.createElement('canvas');c.width=w;c.height=h;
+      c.getContext('2d').drawImage(img,0,0,w,h);
+      const webp=c.toDataURL('image/webp',qual);
+      cb(webp.startsWith('data:image/webp')?webp:c.toDataURL('image/jpeg',qual));
+    };
+    img.src=ev.target.result;
+  };
+  r.readAsDataURL(file);
+}
 
 /* ───── DEFAULTS ───── */
 const DSET={password:'maricota2026',waNumber:'5599999999999',adminName:'Aladiane'};
@@ -877,13 +897,13 @@ function saveProd(){
 
 /* image upload */
 document.getElementById('fileIn').addEventListener('change',e=>{
-  [...e.target.files].forEach(f=>{const r=new FileReader();r.onload=ev=>{imgs.push(ev.target.result);renderPreviews()};r.readAsDataURL(f)});
+  [...e.target.files].forEach(f=>compressImg(f,b64=>{imgs.push(b64);renderPreviews()}));
   e.target.value='';
 });
 const uz=document.getElementById('uz');
 uz.addEventListener('dragover',e=>{e.preventDefault();uz.classList.add('drag')});
 uz.addEventListener('dragleave',()=>uz.classList.remove('drag'));
-uz.addEventListener('drop',e=>{e.preventDefault();uz.classList.remove('drag');[...e.dataTransfer.files].filter(f=>f.type.startsWith('image/')).forEach(f=>{const r=new FileReader();r.onload=ev=>{imgs.push(ev.target.result);renderPreviews()};r.readAsDataURL(f)})});
+uz.addEventListener('drop',e=>{e.preventDefault();uz.classList.remove('drag');[...e.dataTransfer.files].filter(f=>f.type.startsWith('image/')).forEach(f=>compressImg(f,b64=>{imgs.push(b64);renderPreviews()}))});
 function renderPreviews(){document.getElementById('upvs').innerHTML=imgs.map((s,i)=>`<div class="upv"><img src="${s}" alt=""><button class="rm" onclick="imgs.splice(${i},1);renderPreviews()">✕</button></div>`).join('')}
 
 /* ───── DELETE ───── */
@@ -1100,13 +1120,11 @@ function loadConteudo(){
 
 function uploadImg(e,key,prevId){
   const file=e.target.files[0];if(!file)return;
-  const r=new FileReader();
-  r.onload=ev=>{
-    pendingImgs[key]=ev.target.result;
+  compressImg(file,b64=>{
+    pendingImgs[key]=b64;
     const prev=document.getElementById(prevId);
-    if(prev)prev.src=ev.target.result;
-  };
-  r.readAsDataURL(file);
+    if(prev)prev.src=b64;
+  },900,0.8);
 }
 
 function saveCtn(section){
